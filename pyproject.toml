@@ -1,15 +1,35 @@
 [tool.poetry]
 name = "nail"
 version = "0.1.0"
-description = "\"Numerai with Lightning\""
+description = "Numerai with Lightning"
 authors = ["jacksonneal <jacksontneal@gmail.com>"]
-license = "\"MIT\""
+license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+numerapi = "^2.15.0"
+pydantic = "^2.3.0"
+pydantic-settings = "^2.0.3"
 
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.5.1"
+black = "^23.7.0"
+isort = "^5.12.0"
+ruff = "^0.0.285"
+pytest = "^7.4.0"
+dvc = {extras = ["s3"], version = "^3.16.0"}
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.mypy]
+ignore_missing_imports = "True"
+
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_options]
+addopts = "-s"

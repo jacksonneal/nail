@@ -1,0 +1,6 @@
+outs:
+- md5: b6ea22c399deed274ae0c137a564318b.dir
+  size: 1453614156
+  nfiles: 1
+  hash: md5
+  path: numerai
