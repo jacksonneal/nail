@@ -7,10 +7,15 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.13"
 numerapi = "^2.15.0"
 pydantic = "^2.3.0"
 pydantic-settings = "^2.0.3"
+lightgbm = "^4.0.0"
+pandas = "^2.0.3"
+scipy = "^1.11.2"
+halo = "^0.0.31"
+tqdm = "^4.66.1"
 
 
 [tool.poetry.group.dev.dependencies]
