@@ -1,0 +1,6 @@
+black
+dvc[s3]
+isort
+mypy
+pytest
+ruff
