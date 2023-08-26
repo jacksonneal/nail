@@ -1,4 +1,7 @@
+fastparquet
 numerapi
+pandas
+pyarrow
 pydantic
 pydantic_settings
 torch

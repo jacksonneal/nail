@@ -1,3 +1,4 @@
+from os.path import join
 from typing import Annotated
 
 from pydantic import AfterValidator, Field
@@ -18,6 +19,11 @@ class Settings(BaseSettings):
         str, AfterValidator(dir_exists), Field(validate_default=True)
     ] = "replace-me"
     data_version: str = "v4.1"
+    feature_set: str = "small"
+
+    @property
+    def version_data_dir(self):
+        return join(self.data_dir, self.data_version)
 
 
 settings = Settings()
