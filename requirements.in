@@ -1,7 +1,9 @@
 fastparquet
+lightgbm
 numerapi
 pandas
 pyarrow
 pydantic
 pydantic_settings
+scikit-learn
 torch

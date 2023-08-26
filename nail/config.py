@@ -17,9 +17,12 @@ class Settings(BaseSettings):
 
     data_dir: Annotated[
         str, AfterValidator(dir_exists), Field(validate_default=True)
-    ] = "replace-me"
+    ] = "replace-me!"
     data_version: str = "v4.1"
-    feature_set: str = "small"
+    feature_set: str = "medium"
+    models_dir: Annotated[
+        str, AfterValidator(dir_exists), Field(validate_default=True)
+    ] = "replace-me!"
 
     @property
     def version_data_dir(self):
