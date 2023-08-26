@@ -1,4 +1,7 @@
+import torch
+
 from .data import load_data
 
 if __name__ == "__main__":
-    load_data()
+    print(torch.cuda.is_available())
+    # load_data()
