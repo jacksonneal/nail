@@ -1,6 +1,6 @@
 outs:
-- md5: b6ea22c399deed274ae0c137a564318b.dir
-  size: 1453614156
-  nfiles: 1
+- md5: 84c969207d0f649fad2e351c58df1a2b.dir
+  size: 6315929513
+  nfiles: 12
   hash: md5
   path: numerai
