@@ -17,6 +17,7 @@ class Settings(BaseSettings):
     data_dir: Annotated[
         str, AfterValidator(dir_exists), Field(validate_default=True)
     ] = "replace-me"
+    data_version: str = "v4.1"
 
 
 settings = Settings()
