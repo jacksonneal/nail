@@ -206,6 +206,10 @@ iterative-telemetry==0.0.8
     # via dvc
 itsdangerous==2.1.2
     # via starsessions
+jax[cpu]==0.4.14
+    # via nail (pyproject.toml)
+jaxlib==0.4.14
+    # via jax
 jinja2==3.1.2
     # via
     #   lightning
@@ -239,6 +243,10 @@ markupsafe==2.1.3
     # via jinja2
 mdurl==0.1.2
     # via markdown-it-py
+ml-dtypes==0.2.0
+    # via
+    #   jax
+    #   jaxlib
 mpmath==1.3.0
     # via sympy
 multidict==6.0.4
@@ -260,14 +268,20 @@ numerapi==2.15.1
 numpy==1.25.2
     # via
     #   fastparquet
+    #   jax
+    #   jaxlib
     #   lightgbm
     #   lightning
+    #   ml-dtypes
+    #   nail (pyproject.toml)
+    #   opt-einsum
     #   pandas
     #   pyarrow
     #   pytorch-lightning
     #   scikit-learn
     #   scipy
     #   torchmetrics
+    #   xgboost
 nvidia-cublas-cu11==11.10.3.66
     # via
     #   nvidia-cudnn-cu11
@@ -295,6 +309,8 @@ nvidia-nvtx-cu11==11.7.91
     # via torch
 omegaconf==2.3.0
     # via hydra-core
+opt-einsum==3.3.0
+    # via jax
 ordered-set==4.1.0
     # via deepdiff
 orjson==3.9.5
@@ -421,8 +437,11 @@ scikit-learn==1.3.0
     # via nail (pyproject.toml)
 scipy==1.11.2
     # via
+    #   jax
+    #   jaxlib
     #   lightgbm
     #   scikit-learn
+    #   xgboost
 scmrepo==1.3.1
     # via dvc
 shortuuid==1.0.11
@@ -547,6 +566,8 @@ wheel==0.41.2
     #   nvidia-nvtx-cu11
 wrapt==1.15.0
     # via aiobotocore
+xgboost==1.7.6
+    # via nail (pyproject.toml)
 yarl==1.9.2
     # via aiohttp
 zc-lockfile==3.0.post1
