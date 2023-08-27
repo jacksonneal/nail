@@ -1,5 +1,6 @@
 import json
-from os.path import isdir, join
+from os import remove
+from os.path import isfile, join
 from typing import List
 
 from numerapi import NumerAPI
@@ -18,14 +19,19 @@ TARGET_COL = "target"
 
 
 def download_data():
-    if isdir(join(settings.data_dir, settings.data_version)):
-        print(f"{settings.data_version} already downloaded, skipping")
-        return
-
     napi = NumerAPI()
+    cur_round = napi.get_current_round()
+    if not isfile(join(settings.version_data_dir, f"round-{cur_round}-{LIVE_FILE}")):
+        napi.download_dataset(
+            join(settings.data_version, LIVE_FILE),
+            join(settings.version_data_dir, f"round-{cur_round}-{LIVE_FILE}"),
+        )
+        if isfile(join(settings.version_data_dir, LIVE_FILE)):
+            remove(join(settings.version_data_dir, LIVE_FILE))
+
     datasets = [d for d in napi.list_datasets() if d.startswith(settings.data_version)]
     for d in datasets:
-        napi.download_dataset(d, dest_path=join(settings.data_dir, d))
+        napi.download_dataset(d, join(settings.data_dir, d))
 
 
 def read_features() -> List[str]:
