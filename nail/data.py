@@ -14,10 +14,10 @@ LIVE_FILE = "live.parquet"
 
 DATA_TYPE_COL = "data_type"
 ERA_COL = "era"
-TARGET_COL = "target_cyrus_v4_20"
+TARGET_COL = "target"
 
 
-def load_data():
+def download_data():
     if isdir(join(settings.data_dir, settings.data_version)):
         print(f"{settings.data_version} already downloaded, skipping")
         return
@@ -57,4 +57,4 @@ def read_live_data() -> DataFrame:
 
 
 if __name__ == "__main__":
-    load_data()
+    download_data()
