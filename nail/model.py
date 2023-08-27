@@ -14,7 +14,7 @@ class MyMachine(nn.Module):
 
 
 def get_dataset():
-    X = torch.rand((1000, 2))
+    X = torch.rand((1000, 2)).cuda()
     x1 = X[:, 0]
     x2 = X[:, 1]
     y = x1 * x2
@@ -30,22 +30,21 @@ def train():
     model.train()
     X, y = get_dataset()
 
-    X.to(device)
     print(X.is_cuda)
 
-    # NUM_EPOCHS = 1000
-    # optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, weight_decay=1e-5)
-    # criterion = torch.nn.MSELoss(reduction="mean")
-    #
-    # for epoch in range(NUM_EPOCHS):
-    #     optimizer.zero_grad()
-    #     y_pred = model(X)
-    #     y_pred = y_pred.reshape(1000)
-    #     loss = criterion(y_pred, y)
-    #     loss.backward()
-    #     optimizer.step()
-    #     print(f"Epoch:{epoch}, Loss:{loss.item()}")
-    # torch.save(model.state_dict(), "model.h5")
+    NUM_EPOCHS = 1000
+    optimizer = torch.optim.Adam(model.parameters(), lr=1e-2, weight_decay=1e-5)
+    criterion = torch.nn.MSELoss(reduction="mean")
+
+    for epoch in range(NUM_EPOCHS):
+        optimizer.zero_grad()
+        y_pred = model(X)
+        y_pred = y_pred.reshape(1000)
+        loss = criterion(y_pred, y)
+        loss.backward()
+        optimizer.step()
+        print(f"Epoch:{epoch}, Loss:{loss.item()}")
+    torch.save(model.state_dict(), "model.h5")
 
 
 def test():
@@ -60,4 +59,4 @@ def test():
 
 
 train()
-test()
+# test()
