@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     data_version: str = "v4.1"
     feature_set: str = "small"
     models_dir: str = "replace-me!"
-    xgb_tree_method: str = "approx"
+    xgb_tree_method: str = "hist"
 
     @property
     def version_data_dir(self):
