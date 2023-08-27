@@ -1,6 +1,6 @@
 from os.path import join
 
-from xgboost import XGBRegressor
+import xgboost as xgb
 
 from .config import settings
 from .data import TARGET_COL, read_features, read_training_data
@@ -9,12 +9,17 @@ MODEL_NAME = "model"
 
 
 def train():
-    training_data = read_training_data()
+    training_data = read_training_data()[:500000]
     features = read_features()
+    training_data_matrix = xgb.DMatrix(
+        training_data[features], label=training_data[TARGET_COL]
+    )
 
-    reg = XGBRegressor(tree_method="gpu_hist")
-    model = reg.fit(training_data[features], training_data[TARGET_COL])
-    model.save_model(join(settings.models_dir, f"{MODEL_NAME}.json"))
+    bst = xgb.train(
+        {"tree_method": settings.xgb_tree_method},
+        training_data_matrix,
+    )
+    bst.save_model(join(settings.models_dir, f"{MODEL_NAME}.json"))
 
 
 if __name__ == "__main__":

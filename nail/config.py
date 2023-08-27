@@ -16,7 +16,7 @@ class Settings(BaseSettings):
 
     data_dir: str = "replace-me!"
     data_version: str = "v4.1"
-    feature_set: str = "small"
+    feature_set: str = "medium"
     models_dir: str = "replace-me!"
     xgb_tree_method: str = "hist"
 

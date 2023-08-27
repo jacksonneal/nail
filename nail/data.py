@@ -3,8 +3,9 @@ from os import remove
 from os.path import isfile, join
 from typing import List
 
+# from pandas import DataFrame, read_parquet
+from dask.dataframe import read_parquet
 from numerapi import NumerAPI
-from pandas import DataFrame, read_parquet
 
 from .config import settings
 
@@ -44,21 +45,27 @@ def read_columns() -> List[str]:
     return read_features() + [ERA_COL, DATA_TYPE_COL, TARGET_COL]
 
 
-def read_data(file_name: str) -> DataFrame:
+def read_data(file_name: str):
     return read_parquet(
-        join(settings.version_data_dir, file_name), columns=read_columns()
+        join(settings.version_data_dir, file_name),
+        columns=read_columns(),
+        split_row_groups="adaptive",
     )
 
 
-def read_training_data() -> DataFrame:
+def read_partitioned_training_data():
+    return read_data(f"partitioned-{TRAINING_FILE}")
+
+
+def read_training_data():
     return read_data(TRAINING_FILE)
 
 
-def read_validation_data() -> DataFrame:
+def read_validation_data():
     return read_data(VALIDATION_FILE)
 
 
-def read_live_data() -> DataFrame:
+def read_live_data():
     return read_data(LIVE_FILE)
 
 
