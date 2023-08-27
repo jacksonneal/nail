@@ -1,14 +1,9 @@
 cloudpickle
-fastapi
 fastparquet
-jax[cuda12_pip]
-lightgbm
-lightning==2.0.7
 numerapi
-numpy
 pandas
 pyarrow
 pydantic
+pydantic-settings
 scikit-learn
-torch
 xgboost

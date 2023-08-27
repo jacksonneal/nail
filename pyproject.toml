@@ -4,7 +4,7 @@ description = "Numerai with Lightning"
 authors = [{name = "Jackson Neal", email = "jacksontneal@gmail.com"}]
 license = {file = "LICENSE"}
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dynamic = ["version", "dependencies", "optional-dependencies"]
 
 [build-system]

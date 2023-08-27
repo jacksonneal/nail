@@ -1,31 +1,25 @@
 from os.path import join
 
-import cloudpickle
-import lightgbm as lgb
 from pandas import DataFrame, Series
-
-from nail.train import MODEL_NAME
+from xgboost import Booster, DMatrix
 
 from .config import settings
-from .data import read_features
+from .data import read_features, read_live_data
+from .train import MODEL_NAME
 
 
-def predict_outer():
-    features = read_features()
+def predict(live_features: DataFrame) -> DataFrame:
+    live_feature_matrix = DMatrix(live_features)
 
-    model = lgb.Booster(model_file=join(settings.models_dir, f"{MODEL_NAME}.txt"))
+    booster = Booster()
+    booster.load_model(join(settings.models_dir, f"{MODEL_NAME}.json"))
+    predictions = booster.predict(live_feature_matrix)
 
-    # Define your prediction pipeline as a function that takes an era of features
-    # as input and outputs your predictions for that era
-    def predict(live_features: DataFrame) -> DataFrame:
-        live_predictions = model.predict(live_features[features])
-        submission = Series(live_predictions, index=live_features.index)
-        return submission.to_frame("prediction")
-
-    p = cloudpickle.dumps(predict)
-    with open("predict.pkl", "wb") as f:
-        f.write(p)
+    prediction_series = Series(predictions, index=live_features.index)
+    return prediction_series.to_frame("prediction")
 
 
 if __name__ == "__main__":
-    predict_outer()
+    live_data = read_live_data()
+    features = read_features()
+    predict(live_data[features])
