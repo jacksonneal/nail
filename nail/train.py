@@ -9,7 +9,7 @@ MODEL_NAME = "model"
 
 
 def train():
-    training_data = read_training_data()[:500000]
+    training_data = read_training_data()
     features = read_features()
     training_data_matrix = xgb.DMatrix(
         training_data[features], label=training_data[TARGET_COL]
