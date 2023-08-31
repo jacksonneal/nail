@@ -11,7 +11,7 @@ from .data import (
 
 
 def train():
-    cluster = dask.distributed.LocalCluster(n_workers=1, threads_per_worker=4)
+    cluster = dask.distributed.LocalCluster(n_workers=4, threads_per_worker=4)
     client = dask.distributed.Client(cluster)
     print(client)
 
