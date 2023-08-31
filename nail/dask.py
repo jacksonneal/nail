@@ -27,7 +27,7 @@ def train():
 
     output = xgb.dask.train(
         client,
-        {"verbosity": 2, "tree_method": "hist", "objective": "reg:squarederror"},
+        {"verbosity": 2, "tree_method": "gpu_hist", "objective": "reg:squarederror"},
         dtrain,
         num_boost_round=4,
         evals=[(dtrain, "train")],
