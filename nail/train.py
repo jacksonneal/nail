@@ -16,7 +16,7 @@ def train():
     )
 
     bst = xgb.train(
-        {"tree_method": settings.xgb_tree_method},
+        {"tree_method": settings.xgb_tree_method, "verbosity": 2},
         training_data_matrix,
     )
     bst.save_model(join(settings.models_dir, f"{MODEL_NAME}.json"))
