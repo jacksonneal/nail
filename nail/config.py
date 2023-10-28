@@ -2,7 +2,9 @@
 
 Copyright (C) 2023 Jackson Neal
 """
-from os.path import join
+from __future__ import annotations
+
+from pathlib import Path
 
 from pydantic import validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -27,8 +29,8 @@ class Settings(BaseSettings):
     xgb_tree_method: str = "hist"
 
     @property
-    def version_data_dir(self):
-        return join(self.data_dir, self.data_version)
+    def version_data_dir(self: Settings) -> Path:
+        return Path(self.data_dir) / Path(self.data_version)
 
     @validator("data_dir", "models_dir", always=True)
     def check_data_dir(cls, v: str) -> str:
