@@ -1,7 +1,6 @@
 import json
 from os import remove
 from os.path import isfile, join
-from typing import List
 
 # from pandas import DataFrame, read_parquet
 from dask.dataframe import read_parquet
@@ -35,13 +34,13 @@ def download_data():
         napi.download_dataset(d, join(settings.data_dir, d))
 
 
-def read_features() -> List[str]:
-    with open(join(settings.version_data_dir, FEATURES_FILE), "r") as f:
+def read_features() -> list[str]:
+    with open(join(settings.version_data_dir, FEATURES_FILE)) as f:
         feature_metadata = json.load(f)
     return feature_metadata["feature_sets"][settings.feature_set]
 
 
-def read_columns() -> List[str]:
+def read_columns() -> list[str]:
     return read_features() + [ERA_COL, DATA_TYPE_COL, TARGET_COL]
 
 

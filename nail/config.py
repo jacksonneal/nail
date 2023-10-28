@@ -1,3 +1,7 @@
+"""Configure settings.
+
+Copyright (C) 2023 Jackson Neal
+"""
 from os.path import join
 
 from pydantic import validator
@@ -7,6 +11,8 @@ from .validator import dir_exists
 
 
 class Settings(BaseSettings):
+    """Settings."""
+
     model_config = SettingsConfigDict(
         case_sensitive=False,
         env_file=".env",
@@ -16,7 +22,7 @@ class Settings(BaseSettings):
 
     data_dir: str = "replace-me!"
     data_version: str = "v4.1"
-    feature_set: str = "small"
+    feature_set: str = "medium"
     models_dir: str = "replace-me!"
     xgb_tree_method: str = "hist"
 

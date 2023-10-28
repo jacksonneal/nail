@@ -1,3 +1,4 @@
+from os import *
 from os.path import join
 
 import xgboost as xgb
@@ -12,7 +13,8 @@ def train():
     training_data = read_training_data()
     features = read_features()
     training_data_matrix = xgb.DMatrix(
-        training_data[features], label=training_data[TARGET_COL]
+        training_data[features],
+        label=training_data[TARGET_COL],
     )
 
     bst = xgb.train(

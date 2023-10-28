@@ -2,11 +2,9 @@ import dask.distributed
 import xgboost as xgb
 
 from .data import (
-    ERA_COL,
     TARGET_COL,
     read_features,
     read_partitioned_training_data,
-    read_training_data,
 )
 
 
@@ -15,7 +13,8 @@ def train():
     client = dask.distributed.Client(cluster)
     print(client)
 
-    training_data = read_training_data()
+    training_data = read_partitioned_training_data()
+    # training_data = read_training_data()
 
     # every_4th_era = training_data[ERA_COL].unique()[::4].compute()
     # training_data = training_data[training_data[ERA_COL].isin(every_4th_era)]
